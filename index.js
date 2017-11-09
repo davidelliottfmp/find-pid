@@ -49,9 +49,9 @@ function getPID(cb) {
 
     for (const line of output) {
       const fields = line.split(/\s+/).map(f => f.trim());
-      for (const field of fields) {
+      for (let field of fields) {
         // linux: 12345/nginx
-        if (/^\d+(?:\/\w+)?$/i.test(field)) {
+        if (/^[0-9]+[/].[a-zA-Z]+$/i.test(field)) {
           if (field.indexOf('/') > -1) {
             field = field.split('/')[0];
           }
